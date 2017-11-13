@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Vsts.package;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,10 +7,21 @@ namespace Vstsdemo
 {
     public class HomeController : Controller
     {
-        // GET: /<controller>/
+        private readonly IDemoPackage _demoPackage;
+
+        public HomeController(IDemoPackage demoPackage)
+        {
+            _demoPackage = demoPackage;
+        }
+
         public IActionResult Show()
         {
             return View();
+        }
+
+        public IActionResult GetName()
+        {
+            return View(_demoPackage);
         }
     }
 }
