@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vsts.package;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Vstsdemo
 {
-    public class HomeController : Controller
+    public class DemoController : Controller
     {
         private readonly IDemoPackage _demoPackage;
 
-        public HomeController(IDemoPackage demoPackage)
+        public DemoController(IDemoPackage demoPackage)
         {
             _demoPackage = demoPackage;
         }
@@ -19,9 +18,14 @@ namespace Vstsdemo
             return View();
         }
 
-        public IActionResult GetName()
+        public IActionResult DisplayNames()
         {
-            return View(_demoPackage);
+            var model = new Models.NameModel
+            {
+                Name = _demoPackage.GetNames()
+            };
+
+            return View(model);
         }
     }
 }
