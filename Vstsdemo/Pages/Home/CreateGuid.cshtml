@@ -1,0 +1,11 @@
+﻿@page
+@model Vstsdemo.Pages.CreateGuidModel
+@{
+    ViewData["Title"] = "Create a Guid";
+}
+
+<div class="row">
+    <form asp-controller="Demo" >
+        <input size="32" autofocus asp-for="@Model.Identifier" /> <br />
+    </form>
+</div>

@@ -2,24 +2,24 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using System.Threading.Tasks;
+    using System;
     using Vsts.package;
 
-    public class GetNameModel : PageModel
+    public class CreateGuidModel : PageModel
     {
         [BindProperty]
-        public string Name { get; set; }
+        public Guid Identifier { get; set; }
 
         private readonly IDemoPackage _demoPackage;
 
-        public GetNameModel(IDemoPackage demoPackage)
+        public CreateGuidModel(IDemoPackage demoPackage)
         {
             _demoPackage = demoPackage;
         }
         
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {
-            Name = await _demoPackage.GetNamesAsync();
+            Identifier = Guid.NewGuid();
 
             return Page();
         }
